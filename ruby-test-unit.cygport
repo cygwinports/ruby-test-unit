@@ -1,0 +1,24 @@
+inherit rubygem
+
+NAME="ruby-test-unit"
+VERSION=2.5.5
+RELEASE=1
+CATEGORY="Ruby"
+SUMMARY="Ruby unit testing framework"
+DESCRIPTION="test-unit is a xUnit family unit testing framework for Ruby."
+HOMEPAGE="https://test-unit.github.io/"
+
+src_install() {
+	cd ${S}
+	rubygem_install
+
+	# test/unit bundled in ruby-1.9.1+ is just a compatibility layer
+	# on top of minitest and not fully compatible with this test-unit
+	dodir /usr/bin
+	cat > ${D}/usr/bin/testrb2 <<_EOF
+#!${RUBY}
+require 'test-unit'
+exit Test::Unit::AutoRunner.run(true)
+_EOF
+	chmod +x ${D}/usr/bin/testrb2
+}
