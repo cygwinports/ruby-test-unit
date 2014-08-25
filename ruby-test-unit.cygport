@@ -8,6 +8,8 @@ SUMMARY="Ruby unit testing framework"
 DESCRIPTION="test-unit is a xUnit family unit testing framework for Ruby."
 HOMEPAGE="https://test-unit.github.io/"
 
+ARCH=noarch
+
 PKG_NAMES="${NAME} ${NAME}-doc"
 ruby_test_unit_CONTENTS="--exclude=sample usr/bin/ ${RUBYGEM_INSTDIR#/} ${RUBYGEM_SPEC#/}"
 ruby_test_unit_doc_CONTENTS="${RUBYGEM_DOCDIR#/} ${RUBYGEM_INSTDIR#/}/sample/"
